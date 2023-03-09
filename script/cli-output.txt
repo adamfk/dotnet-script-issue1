@@ -1,0 +1,52 @@
+PS C:\Users\akruck\Downloads\dotnet-script-issue1> cd script   
+PS C:\Users\akruck\Downloads\dotnet-script-issue1\script> dotnet-script test.csx
+Object reference not set to an instance of an object.
+PS C:\Users\akruck\Downloads\dotnet-script-issue1\script> dotnet-script test.csx --debug --no-cache
+dbug: Dotnet.Script.Core.Commands.ExecuteScriptCommand[0]
+      The script C:\Users\akruck\Downloads\dotnet-script-issue1\script\test.csx was executed with the '--no-cache' flag. Skipping cache.
+info: Dotnet.Script.Core.ScriptCompiler[0]
+      Current runtime is 'win'.
+dbug: Dotnet.Script.DependencyModel.ProjectSystem.ScriptProjectProvider[0]
+      Creating project file for C:\Users\akruck\Downloads\dotnet-script-issue1\script\test.csx
+dbug: Dotnet.Script.DependencyModel.ProjectSystem.ScriptParser[0]
+      Parsing C:\Users\akruck\Downloads\dotnet-script-issue1\script\test.csx
+dbug: Dotnet.Script.DependencyModel.ProjectSystem.ScriptProjectProvider[0]
+      Project file saved to C:\Users\akruck\AppData\Local\Temp\dotnet-script\C\Users\akruck\Downloads\dotnet-script-issue1\script\net6.0\script.csproj
+dbug: Dotnet.Script.DependencyModel.ProjectSystem.ScriptProjectProvider[0]
+      <?xml version="1.0" encoding="utf-8"?>
+      <Project Sdk="Microsoft.NET.Sdk">
+        <PropertyGroup>
+          <OutputType>Exe</OutputType>
+          <TargetFramework>net6.0</TargetFramework>
+          <LangVersion>latest</LangVersion>
+        </PropertyGroup>
+        <ItemGroup>
+          <PackageReference Include="StateSmith" Version="0.8.2-alpha" />
+        </ItemGroup>
+        <Target Name="RecordReferencePaths" AfterTargets="AfterResolveReferences">
+          <WriteLinesToFile File="$(OutputPath)/ReferencePaths.txt" Lines="@(ReferencePath)" />
+        </Target>
+      </Project>
+dbug: Dotnet.Script.DependencyModel.Context.DotnetRestorer[0]
+dbug: Dotnet.Script.DependencyModel.Context.ProfiledRestorer[0]
+      Restoring C:\Users\akruck\AppData\Local\Temp\dotnet-script\C\Users\akruck\Downloads\dotnet-script-issue1\script\net6.0\script.csproj took 892ms
+dbug: Dotnet.Script.Core.ScriptCompiler[0]
+      Configuration/Optimization mode: Debug
+dbug: Dotnet.Script.Core.ScriptCompiler[0]
+      Suppressed diagnostic CS1705: error CS1705: Assembly 'StateSmith' with identity 'StateSmith, Version=0.8.2.0, Culture=neutral, PublicKeyToken=null' uses 'Microsoft.CodeAnalysis.CSharp, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' which has a higher version than referenced assembly 'Microsoft.CodeAnalysis.CSharp' with identity 'Microsoft.CodeAnalysis.CSharp, Version=4.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35'
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Dotnet.Script.Core.ScriptPublisher.CreateScriptAssembly[TReturn,THost](ScriptContext context, String outputDirectory, String assemblyFileName) in C:\Users\runneradmin\AppData\Local\Temp\tmpFE4C\Dotnet.Script.Core\ScriptPublisher.cs:line 106
+   at Dotnet.Script.Core.ScriptPublisher.CreateAssembly[TReturn,THost](ScriptContext context, LogFactory logFactory, String assemblyFileName) in C:\Users\runneradmin\AppData\Local\Temp\tmpFE4C\Dotnet.Script.Core\ScriptPublisher.cs:line 45
+   at Dotnet.Script.Core.Commands.PublishCommand.Execute(PublishCommandOptions options) in C:\Users\runneradmin\AppData\Local\Temp\tmpFE4C\Dotnet.Script.Core\Commands\PublishCommand.cs:line 44
+   at Dotnet.Script.Core.Commands.ExecuteScriptCommand.GetLibrary(ExecuteScriptCommandOptions executeOptions) in C:\Users\runneradmin\AppData\Local\Temp\tmpFE4C\Dotnet.Script.Core\Commands\ExecuteScriptCommand.cs:line 73
+   at Dotnet.Script.Core.Commands.ExecuteScriptCommand.Run[TReturn,THost](ExecuteScriptCommandOptions options) in C:\Users\runneradmin\AppData\Local\Temp\tmpFE4C\Dotnet.Script.Core\Commands\ExecuteScriptCommand.cs:line 34
+   at Dotnet.Script.Program.<>c__DisplayClass4_0.<<Wain>b__9>d.MoveNext() in C:\Users\runneradmin\AppData\Local\Temp\tmpFE4C\Dotnet.Script\Program.cs:line 261
+--- End of stack trace from previous location ---
+   at McMaster.Extensions.CommandLineUtils.CommandLineApplication.ExecuteAsync(String[] args, CancellationToken cancellationToken)
+   at McMaster.Extensions.CommandLineUtils.CommandLineApplication.Execute(String[] args)
+   at Dotnet.Script.Program.Wain(String[] args) in C:\Users\runneradmin\AppData\Local\Temp\tmpFE4C\Dotnet.Script\Program.cs:line 270
+   at Dotnet.Script.Program.Main(String[] args) in C:\Users\runneradmin\AppData\Local\Temp\tmpFE4C\Dotnet.Script\Program.cs:line 28
+PS C:\Users\akruck\Downloads\dotnet-script-issue1\script>
+PS C:\Users\akruck\Downloads\dotnet-script-issue1\script> dotnet-script --version
+1.4.0
+PS C:\Users\akruck\Downloads\dotnet-script-issue1\script> 

@@ -1,0 +1,7 @@
+PS C:\Users\akruck\Downloads\dotnet-script-issue1> cd proj
+PS C:\Users\akruck\Downloads\dotnet-script-issue1\proj> dotnet run 
+Started running...
+Finished running.
+PS C:\Users\akruck\Downloads\dotnet-script-issue1\proj> dotnet --version
+7.0.102
+PS C:\Users\akruck\Downloads\dotnet-script-issue1\proj> 
